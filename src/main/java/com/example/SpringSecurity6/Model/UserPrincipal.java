@@ -1,5 +1,6 @@
 package com.example.SpringSecurity6.Model;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,21 +8,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
+@RequiredArgsConstructor
 public class UserPrincipal implements UserDetails {
 
 
-    private UserModel user;
-    public UserPrincipal(UserModel user){
-        this.user=user;
+    private final UserModel user;
 
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+        return Collections.singleton(new SimpleGrantedAuthority(user.getRoles()));
 
     }
+
 
     @Override
     public String getPassword() {
