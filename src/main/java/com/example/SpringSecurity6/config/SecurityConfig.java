@@ -45,7 +45,7 @@ public class SecurityConfig {
     http.cors(cors->cors.configurationSource(corsConfigurationSource()))
             .csrf(customizer->customizer.disable())
     .authorizeHttpRequests(request->request
-            .requestMatchers("/register","/login","/").permitAll()
+            .requestMatchers("/register","/login","/","/ws/**","/ask").permitAll()
             .anyRequest().authenticated())
 
 
@@ -70,10 +70,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*")); // Allow all origins
+        configuration.setAllowedOrigins(List.of("http://localhost:5173/")); // Allow all origins
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-        configuration.setAllowCredentials(false);
+        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

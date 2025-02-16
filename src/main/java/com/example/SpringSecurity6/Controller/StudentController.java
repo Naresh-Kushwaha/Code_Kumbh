@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/student")
 @PreAuthorize("hasAuthority('STUDENT')")
-//@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class StudentController {
     private final StudentService service;
     @GetMapping("/greet")

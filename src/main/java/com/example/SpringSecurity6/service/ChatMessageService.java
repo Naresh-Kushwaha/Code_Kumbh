@@ -5,6 +5,8 @@ import com.example.SpringSecurity6.Repo.ChatMessageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ChatMessageService {
@@ -22,8 +24,8 @@ public class ChatMessageService {
         return chatMessageRepository.save(message);
     }
 
-//    public List<ChatMessage> getChatHistory(String senderId, String receiverId) {
-//        return chatMessageRepository.findBySenderIdAndReceiverIdOrReceiverIdAndSenderIdOrderByTimestamp(
-//                senderId, receiverId, senderId, receiverId);
-//    }
+    public List<ChatMessage> getChatHistory(String senderId, String receiverId) {
+        return chatMessageRepository.findBySenderAndRecipientOrRecipientAndSenderOrderByTimestamp(
+                senderId, receiverId, senderId, receiverId);
+    }
 }

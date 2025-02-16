@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/alumni")
 @RequiredArgsConstructor
-//@PreAuthorize("hasAuthority('ALUMNI')")
+@PreAuthorize("hasAuthority('ALUMNI')")
 public class AlumniController {
     private final AlumniService service;
 
